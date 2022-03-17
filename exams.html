@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="./statics/css/style.css" rel="stylesheet" />
+    <title>幸運物種測驗</title>
+  </head>
+  <body>
+    <div class="container bg_img">
+      <div class="dCKRya">
+        <div style="width: 70%; margin: 45%;">
+          <div class="frTzDP" style="margin: 10px;">
+            <!-- <img
+              src="https://static.wippy.io/r/mbti_web/gender_image.png"
+              style="bottom: 0px; width: 30%; height: 30%;"
+            /> -->
+            <div class="hcyQsG" id="question">
+              <div>你喜歡在白天還是晚上出門？</div>
+            </div>
+          </div>
+          <div>
+            <!-- style="background-color: red;"> -->
+            <button
+              class="common__DefaultButton-tzij20-2 cdNgSy btn-on-click"
+              style="
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                outline: none;
+              "
+              id="btn_1"
+              onclick="changeColor(1)"
+            >
+              <div id="btn_1_text" class="hcyQsG">白天</div>
+            </button>
+          </div>
+          <div>
+            <button
+              class="common__DefaultButton-tzij20-2 cdNgSy btn-on-click"
+              style="
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                outline: none;
+              "
+              id="btn_2"
+              onclick="changeColor(2)"
+            >
+              <div id="btn_2_text" class="hcyQsG">晚上</div>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+      var num = 0;
+      var NUM_QUESTION = 3;
+
+      let ans = [];
+      function sleep(ms) {
+        return new Promise((resolve) => setTimeout(resolve, ms));
+      }
+
+      async function changeColor(n) {
+        var btn_name = "btn_" + n;
+
+        ans.push(n);
+
+        document.getElementById(btn_name).style.borderColor =
+          "rgb(253 105 139)";
+        document.getElementById(btn_name).style.borderWidth = "0.25em";
+        document.getElementById(btn_name + "_text").style.color =
+          "rgb(253 105 139)";
+
+        if (num <= NUM_QUESTION) await sleep(400).then(() => {});
+        if (num == NUM_QUESTION) {
+          runResults();
+        }
+        nextQuestion(num);
+        num += 1;
+      }
+
+      function nextQuestion(num) {
+        if (num < NUM_QUESTION)
+          for (let i = 1; i <= 2; i++) {
+            document.getElementById("btn_" + i).style.border =
+              "1px dashed rgb(203, 203, 203)";
+          }
+
+        // document.getElementById("btn_2").style.border =
+        //   "1px dashed rgb(203, 203, 203)";
+
+        let options = [
+          // ["白天", "夜晚"],
+          ["外向", "內向"],
+          ["唱歌我最愛", "唱歌我不愛"],
+          ["怕", "不怕"]
+        ];
+
+        let questions = [
+          // ["白天", "夜晚"],
+          ["你認為你的個性是內向還外向？"],
+          ["唱歌是你不可或缺的娛樂嗎？"],
+          ["你怕高嗎？"]
+        ];
+
+        for (let i = 1; i <= 2; i++) {
+          document.getElementById("btn_" + i).innerHTML =
+            '<div class="bqQQkU">' +
+            '</div><div id="btn_' +
+            i +
+            '_text" class="hcyQsG">' +
+            options[num][i - 1] +
+            "</div>";
+
+          document.getElementById("question").innerHTML =
+            "<div>" + questions[num] + "</div>";
+          document.getElementById("btn_" + i + "_text").style.color =
+            "rgb(44, 44, 44)";
+        }
+
+        // document.getElementById("btn_1_text").style.color = "rgb(44, 44, 44)";
+        // document.getElementById("btn_2_text").style.color = "rgb(44, 44, 44)";
+      }
+
+      function runResults() {
+        if (ans[0] == 2 && ans[2] == 2 && ans[3] == 1) {
+          window.location.href = "mascot/rhacophorus_taipeianus.html";
+        } else if (ans[0] == 1 && ans[1] == 2 && ans[2] == 1 && ans[3] == 1) {
+          window.location.href = "mascot/sterna_albifrons.html";
+        } else if (ans[0] == 2 && ans[1] == 1 && ans[2] == 1 && ans[3] == 2) {
+          window.location.href = "mascot/frosted_bat.html";
+        } else if (ans[0] == 1 && ans[1] == 1 && ans[2] == 2 && ans[3] == 2) {
+          window.location.href = "mascot/gallinula_chloropus.html";
+        } else if (ans[0] == 1 && ans[1] == 1 && ans[2] == 1 && ans[3] == 2) {
+          window.location.href = "mascot/zhangixalus_arvalis.html";
+        } else if (ans[0] == 1 && ans[1] == 2 && ans[2] == 1 && ans[3] == 2) {
+          window.location.href = "mascot/lophura_swinhoii.html";
+        } else if (ans[0] == 1 && ans[1] == 1 && ans[2] == 1 && ans[3] == 1) {
+          window.location.href = "mascot/cryptotympana_atrata.html";
+        } else if (ans[0] == 2 && ans[1] == 2 && ans[2] == 1 && ans[3] == 1) {
+          window.location.href = "mascot/diploderma_swinhonis.html";
+        } else if (ans[0] == 1 && ans[1] == 2 && ans[2] == 2 && ans[3] == 1) {
+          window.location.href = "mascot/phasianus_colchicus_formosanus.html";
+        } else if (ans[0] == 2 && ans[1] == 1 && ans[2] == 1 && ans[3] == 1) {
+          window.location.href = "mascot/luciola_cerata.html";
+        } else if (ans[0] == 2 && ans[1] == 2 && ans[2] == 2 && ans[3] == 2) {
+          window.location.href = "mascot/luciola_cerata.html";
+        } else if (ans[0] == 1 && ans[1] == 1 && ans[2] == 2 && ans[3] == 1) {
+          window.location.href = "mascot/himantopus_himantopuss.html";
+        } else {
+          window.location.href = "mascot/wild_hero.html";
+        }
+      }
+
+      //   if (num == 0) {
+      //
+      //   }
+    </script>
+  </body>
+</html>
